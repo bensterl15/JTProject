@@ -69,6 +69,7 @@ public:
 
         pushButton = new QPushButton(upperFrame);
         pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setAutoDefault(false);
 
         hboxLayout1->addWidget(pushButton);
 
