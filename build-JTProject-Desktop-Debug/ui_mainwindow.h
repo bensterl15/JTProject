@@ -14,13 +14,13 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QFrame>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
-#include <QtWidgets/QVBoxLayout>
 
 QT_BEGIN_NAMESPACE
 
@@ -28,17 +28,15 @@ class Ui_MainWindow
 {
 public:
     QFrame *frame;
-    QVBoxLayout *vboxLayout;
-    QFrame *frame1;
-    QHBoxLayout *hboxLayout;
+    QGridLayout *gridLayout;
     QFrame *upperFrame;
-    QHBoxLayout *hboxLayout1;
+    QHBoxLayout *_2;
     QSpacerItem *horizontalSpacer_2;
     QPushButton *pushButton;
     QSpacerItem *horizontalSpacer;
     QLabel *label;
     QSpacerItem *horizontalSpacer_3;
-    QSpacerItem *verticalSpacer;
+    QFrame *frame_2;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -47,54 +45,51 @@ public:
         MainWindow->resize(600, 400);
         frame = new QFrame(MainWindow);
         frame->setObjectName(QStringLiteral("frame"));
-        vboxLayout = new QVBoxLayout(frame);
-        vboxLayout->setSpacing(6);
-        vboxLayout->setContentsMargins(11, 11, 11, 11);
-        vboxLayout->setObjectName(QStringLiteral("vboxLayout"));
-        frame1 = new QFrame(frame);
-        frame1->setObjectName(QStringLiteral("frame1"));
-        hboxLayout = new QHBoxLayout(frame1);
-        hboxLayout->setSpacing(6);
-        hboxLayout->setContentsMargins(11, 11, 11, 11);
-        hboxLayout->setObjectName(QStringLiteral("hboxLayout"));
-        upperFrame = new QFrame(frame1);
+        gridLayout = new QGridLayout(frame);
+        gridLayout->setSpacing(6);
+        gridLayout->setContentsMargins(11, 11, 11, 11);
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        upperFrame = new QFrame(frame);
         upperFrame->setObjectName(QStringLiteral("upperFrame"));
-        hboxLayout1 = new QHBoxLayout(upperFrame);
-        hboxLayout1->setSpacing(6);
-        hboxLayout1->setContentsMargins(11, 11, 11, 11);
-        hboxLayout1->setObjectName(QStringLiteral("hboxLayout1"));
+        upperFrame->setGeometry(QRect(100, 0, 368, 42));
+        _2 = new QHBoxLayout(upperFrame);
+        _2->setSpacing(6);
+        _2->setContentsMargins(11, 11, 11, 11);
+        _2->setObjectName(QStringLiteral("_2"));
         horizontalSpacer_2 = new QSpacerItem(33, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
-        hboxLayout1->addItem(horizontalSpacer_2);
+        _2->addItem(horizontalSpacer_2);
 
         pushButton = new QPushButton(upperFrame);
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setAutoDefault(false);
 
-        hboxLayout1->addWidget(pushButton);
+        _2->addWidget(pushButton);
 
         horizontalSpacer = new QSpacerItem(137, 10, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
-        hboxLayout1->addItem(horizontalSpacer);
+        _2->addItem(horizontalSpacer);
 
         label = new QLabel(upperFrame);
         label->setObjectName(QStringLiteral("label"));
 
-        hboxLayout1->addWidget(label);
+        _2->addWidget(label);
 
         horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        hboxLayout1->addItem(horizontalSpacer_3);
+        _2->addItem(horizontalSpacer_3);
 
 
-        hboxLayout->addWidget(upperFrame);
+        gridLayout->addWidget(upperFrame, 0, 0, 1, 1);
 
+        frame_2 = new QFrame(frame);
+        frame_2->setObjectName(QStringLiteral("frame_2"));
+        frame_2->setEnabled(true);
+        frame_2->setGeometry(QRect(0, 60, 601, 341));
+        frame_2->setFrameShape(QFrame::StyledPanel);
+        frame_2->setFrameShadow(QFrame::Raised);
 
-        vboxLayout->addWidget(frame1);
-
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        vboxLayout->addItem(verticalSpacer);
+        gridLayout->addWidget(frame_2, 1, 0, 40, 1);
 
         MainWindow->setCentralWidget(frame);
 
@@ -109,6 +104,7 @@ public:
         upperFrame->setStyleSheet(QApplication::translate("MainWindow", "background-color: white;", Q_NULLPTR));
         pushButton->setText(QApplication::translate("MainWindow", "Play", Q_NULLPTR));
         label->setText(QApplication::translate("MainWindow", "Label", Q_NULLPTR));
+        frame_2->setStyleSheet(QApplication::translate("MainWindow", "background-color: blue;", Q_NULLPTR));
     } // retranslateUi
 
 };
