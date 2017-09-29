@@ -18,7 +18,7 @@ public:
     ~MainWindow();
 public slots:
     void accept();
-
+    //void loadLabel(std::string str);
 private:
     Ui::MainWindow *ui;
 };
