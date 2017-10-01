@@ -19,10 +19,8 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::accept(){
-    QMessageBox::information(this,tr("Boogity"),tr("Hello!"));
+    //QMessageBox::information(this,tr("Boogity"),tr("Hello!"));
+    char data[512];
+    fgets(data, sizeof(data) , popen("pwd","r"));
+    QMessageBox::information(this,tr("Playing"),tr(data));
 }
-
-/*void MainWindow::loadLabel(std::string str){
-    QLabel mainLabel = this->findChild<QLabel*>("label");
-    mainLabel.setText(str);
-}*/
