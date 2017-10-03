@@ -4,6 +4,12 @@
 #include <QMainWindow>
 #include <QApplication>
 #include <QMessageBox>
+#include <QFileDialog>
+#include <QSoundEffect>
+#include <QSound>
+#include <regex>
+#include <QDial>
+#include <QSlider>
 
 namespace Ui {
 class MainWindow;
@@ -17,10 +23,17 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 public slots:
-    void accept();
-    //void loadLabel(std::string str);
+    void playFunction();
+    void playOutputFunction();
+    void searchFunction();
+    void generateFunction();
 private:
     Ui::MainWindow *ui;
+    void executeTerminalCommand(char *cmd){
+        char data[512];
+        fgets(data, sizeof(data) , popen(cmd,"r"));
+        //QMessageBox::information(this,tr("Playing"),tr(data));
+    }
 };
 
 #endif // MAINWINDOW_H
