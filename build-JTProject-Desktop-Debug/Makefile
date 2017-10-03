@@ -240,7 +240,8 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/features/exceptions.prf \
 		/usr/lib/qt/mkspecs/features/yacc.prf \
 		/usr/lib/qt/mkspecs/features/lex.prf \
-		../JTProject/JTProject.pro ../JTProject/mainwindow.h ../JTProject/main.cpp \
+		../JTProject/JTProject.pro ../JTProject/mainwindow.h \
+		../JTProject/dragwidget.h ../JTProject/main.cpp \
 		../JTProject/mainwindow.cpp
 QMAKE_TARGET  = JTProject
 DESTDIR       = 
@@ -651,7 +652,7 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/qt/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../JTProject/mainwindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../JTProject/mainwindow.h ../JTProject/dragwidget.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../JTProject/main.cpp ../JTProject/mainwindow.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../JTProject/mainwindow.ui $(DISTDIR)/
 
@@ -716,7 +717,8 @@ main.o: ../JTProject/main.cpp ../JTProject/mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../JTProject/main.cpp
 
 mainwindow.o: ../JTProject/mainwindow.cpp ../JTProject/mainwindow.h \
-		ui_mainwindow.h
+		ui_mainwindow.h \
+		../JTProject/dragwidget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../JTProject/mainwindow.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 

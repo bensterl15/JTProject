@@ -62,6 +62,10 @@ public:
     QRadioButton *radioButton_4;
     QRadioButton *radioButton_5;
     QPushButton *generateButton;
+    QSlider *p1;
+    QSlider *p2;
+    QSlider *p3;
+    QSlider *p4;
     QSpacerItem *verticalSpacer_2;
     QSpacerItem *horizontalSpacer_4;
 
@@ -162,7 +166,7 @@ public:
         sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(frame1->sizePolicy().hasHeightForWidth());
         frame1->setSizePolicy(sizePolicy1);
-        frame1->setMaximumSize(QSize(300, 300));
+        frame1->setMaximumSize(QSize(300, 400));
         d1 = new QDial(frame1);
         d1->setObjectName(QStringLiteral("d1"));
         d1->setGeometry(QRect(20, 100, 80, 80));
@@ -204,6 +208,30 @@ public:
         generateButton = new QPushButton(frame1);
         generateButton->setObjectName(QStringLiteral("generateButton"));
         generateButton->setGeometry(QRect(20, 50, 80, 24));
+        p1 = new QSlider(frame1);
+        p1->setObjectName(QStringLiteral("p1"));
+        p1->setGeometry(QRect(10, 280, 251, 16));
+        p1->setMaximum(64);
+        p1->setValue(15);
+        p1->setOrientation(Qt::Horizontal);
+        p2 = new QSlider(frame1);
+        p2->setObjectName(QStringLiteral("p2"));
+        p2->setGeometry(QRect(10, 300, 251, 16));
+        p2->setMaximum(64);
+        p2->setValue(30);
+        p2->setOrientation(Qt::Horizontal);
+        p3 = new QSlider(frame1);
+        p3->setObjectName(QStringLiteral("p3"));
+        p3->setGeometry(QRect(10, 320, 251, 16));
+        p3->setMaximum(64);
+        p3->setValue(45);
+        p3->setOrientation(Qt::Horizontal);
+        p4 = new QSlider(frame1);
+        p4->setObjectName(QStringLiteral("p4"));
+        p4->setGeometry(QRect(10, 340, 251, 16));
+        p4->setMaximum(64);
+        p4->setValue(60);
+        p4->setOrientation(Qt::Horizontal);
 
         vboxLayout->addWidget(frame1);
 
