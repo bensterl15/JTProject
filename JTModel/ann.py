@@ -1,7 +1,7 @@
-import tensorflow as tf 
+import tensorflow as tf
 import tensorflow.contrib.slim as slim
-import numpy as np 
-import matplotlib.pyplot as plt 
+import numpy as np
+import matplotlib.pyplot as plt
 import os
 import librosa
 import sys
@@ -10,7 +10,7 @@ import sys
 sess = tf.Session()
 
 #Creates weight variables for the ANN and groups them in a collection for use in L2 regularization
-def weight_variable(shape_, name_): 
+def weight_variable(shape_, name_):
 	initial = tf.truncated_normal(shape_, name=name_, stddev=0.15) #Initialized with a truncated normal random variable
 	tf.add_to_collection('l2', tf.reduce_sum(tf.pow(initial,2))) #Adding to L2 collection, summing squares
 	return tf.Variable(initial)
@@ -22,7 +22,7 @@ def write_audio(filename,outname, net_):
 	data_path = os.path.join(os.getcwd(),filename) #Finds file path to script and appends filename
 	y, sr = librosa.load(data_path) #Loads audio into python with samples 'y' and sampling rate 'sr' - 22.05kHz by default
 	D = librosa.stft(y) #STFT of input audio saved as D
-	mag = D 
+	mag = D
 	mag = np.abs(mag) #Magnitude response of the STFT
 	remember = mag.max(axis=0)+0.000000001 #Used for normalizing STFT frames (with addition to avoid division by zero)
 	mag = mag / remember #Normalizing
@@ -33,11 +33,12 @@ def write_audio(filename,outname, net_):
 	new_mag *= remember #Un-normalize the STFT frames
 	E = new_mag*np.exp(1j*phase) #Use magnitude and phase to produce complex-valued STFT
 	out = librosa.istft(E) #Inverse STFT
+	out = out/(np.max(out)+0.2)
 	filename = filename[:-4]+'_'
 	librosa.output.write_wav(os.path.join(os.getcwd(),filename+str(outname)),out,sr) #Write output
 
 def tune_knobs(filename_,tag_,knobs_):
-	ckpt = tf.train.latest_checkpoint('checkpoints') 
+	ckpt = tf.train.latest_checkpoint('checkpoints')
 	saver.restore(sess, ckpt)
 	length = len(knobs_)
 	a = np.ones((1,fc4))	#Pre-allocation
@@ -98,7 +99,7 @@ saver = tf.train.Saver()
 restore = True
 
 if restore:
-	ckpt = tf.train.latest_checkpoint('checkpoints') 
+	ckpt = tf.train.latest_checkpoint('checkpoints')
 	saver.restore(sess, ckpt)
 
 

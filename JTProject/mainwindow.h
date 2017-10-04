@@ -7,9 +7,10 @@
 #include <QFileDialog>
 #include <QSoundEffect>
 #include <QSound>
-#include <regex>
 #include <QDial>
 #include <QSlider>
+#include "restrictedslider.h"
+#include <regex>
 
 namespace Ui {
 class MainWindow;
@@ -45,6 +46,25 @@ private:
         this->findChild<QSlider*>("p2")->setValue(arg2);
         this->findChild<QSlider*>("p3")->setValue(arg3);
         this->findChild<QSlider*>("p4")->setValue(arg4);
+    }
+    void resetBounds()
+    {
+        RestrictedSlider *p1 = this->findChild<RestrictedSlider*>("p1");
+        RestrictedSlider *p2 = this->findChild<RestrictedSlider*>("p2");
+        RestrictedSlider *p3 = this->findChild<RestrictedSlider*>("p3");
+        RestrictedSlider *p4 = this->findChild<RestrictedSlider*>("p4");
+
+        p1->setMinValue(1);
+        p1->setMaxValue(p2->value() - 1);
+
+        p2->setMinValue(p1->value() + 1);
+        p2->setMaxValue(p3->value() - 1);
+
+        p3->setMinValue(p2->value() + 1);
+        p3->setMaxValue(p4->value() - 1);
+
+        p4->setMinValue(p3->value() + 1);
+        p4->setMaxValue(64);
     }
 };
 

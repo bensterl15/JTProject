@@ -262,7 +262,7 @@
               <string>Generate</string>
              </property>
             </widget>
-            <widget class="QSlider" name="p1">
+            <widget class="RestrictedSlider" name="p1" native="true">
              <property name="geometry">
               <rect>
                <x>10</x>
@@ -271,17 +271,14 @@
                <height>16</height>
               </rect>
              </property>
-             <property name="maximum">
+             <property name="maximum" stdset="0">
               <number>64</number>
              </property>
-             <property name="value">
+             <property name="value" stdset="0">
               <number>12</number>
              </property>
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
             </widget>
-            <widget class="QSlider" name="p2">
+            <widget class="RestrictedSlider" name="p2" native="true">
              <property name="geometry">
               <rect>
                <x>10</x>
@@ -290,17 +287,14 @@
                <height>16</height>
               </rect>
              </property>
-             <property name="maximum">
+             <property name="maximum" stdset="0">
               <number>64</number>
              </property>
-             <property name="value">
+             <property name="value" stdset="0">
               <number>24</number>
              </property>
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
             </widget>
-            <widget class="QSlider" name="p3">
+            <widget class="RestrictedSlider" name="p3" native="true">
              <property name="geometry">
               <rect>
                <x>10</x>
@@ -309,17 +303,14 @@
                <height>16</height>
               </rect>
              </property>
-             <property name="maximum">
+             <property name="maximum" stdset="0">
               <number>64</number>
              </property>
-             <property name="value">
+             <property name="value" stdset="0">
               <number>36</number>
              </property>
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
             </widget>
-            <widget class="QSlider" name="p4">
+            <widget class="RestrictedSlider" name="p4" native="true">
              <property name="geometry">
               <rect>
                <x>10</x>
@@ -328,14 +319,11 @@
                <height>16</height>
               </rect>
              </property>
-             <property name="maximum">
+             <property name="maximum" stdset="0">
               <number>64</number>
              </property>
-             <property name="value">
+             <property name="value" stdset="0">
               <number>48</number>
-             </property>
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
              </property>
             </widget>
             <widget class="QPushButton" name="m4">
@@ -447,6 +435,13 @@
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>RestrictedSlider</class>
+   <extends>QWidget</extends>
+   <header>restrictedslider.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

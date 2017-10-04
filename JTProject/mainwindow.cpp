@@ -17,6 +17,11 @@ MainWindow::MainWindow(QWidget *parent) :
     QPushButton *m4 = this->findChild<QPushButton*>("m4");
     QPushButton *m5 = this->findChild<QPushButton*>("m5");
 
+    QSlider *p1 = this->findChild<QSlider*>("p1");
+    QSlider *p2 = this->findChild<QSlider*>("p2");
+    QSlider *p3 = this->findChild<QSlider*>("p3");
+    QSlider *p4 = this->findChild<QSlider*>("p4");
+
     QObject::connect(playButton,&QPushButton::clicked,this,&MainWindow::playFunction);
     QObject::connect(searchButton,&QPushButton::clicked,this,&MainWindow::searchFunction);
     QObject::connect(generateButton,&QPushButton::clicked,this,&MainWindow::generateFunction);
@@ -27,6 +32,18 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(m3,&QPushButton::clicked,this,&MainWindow::modeThreeSelected);
     QObject::connect(m4,&QPushButton::clicked,this,&MainWindow::modeFourSelected);
     QObject::connect(m5,&QPushButton::clicked,this,&MainWindow::modeFiveSelected);
+
+    QObject::connect(p1,&QSlider::sliderReleased,this,&MainWindow::resetBounds);
+    QObject::connect(p2,&QSlider::sliderReleased,this,&MainWindow::resetBounds);
+    QObject::connect(p3,&QSlider::sliderReleased,this,&MainWindow::resetBounds);
+    QObject::connect(p4,&QSlider::sliderReleased,this,&MainWindow::resetBounds);
+    resetBounds();
+
+    //Temporary code to hide the progress bars
+    p1->setHidden(true);
+    p2->setHidden(true);
+    p3->setHidden(true);
+    p4->setHidden(true);
 
 }
 
@@ -62,21 +79,11 @@ void MainWindow::generateFunction(){
     QSlider *p2 = this->findChild<QSlider*>("p2");
     QSlider *p3 = this->findChild<QSlider*>("p3");
     QSlider *p4 = this->findChild<QSlider*>("p4");
-    QSlider *p5 = this->findChild<QSlider*>("p5");
 
     int p1_ = p1->value();
     int p2_ = p2->value();
     int p3_ = p3->value();
     int p4_ = p4->value();
-
-    /*try{
-        //p11 = p1->value();
-
-    }catch(std::exception e){
-        QMessageBox::information(this,tr("ugh"),QString::fromStdString(std::to_string(p11)));
-    }*/
-
-    //QMessageBox::information(this,tr("ugh"),QString::fromStdString(std::to_string(p11)));
 
     QString s1="",s2="",s3="",s4="",s5="";
     int i = 0;
@@ -89,7 +96,7 @@ void MainWindow::generateFunction(){
     //Remove the last comma in the number sequence!
     s5 = QString::fromStdString(s5.toStdString().substr(0, s5.size() - 1));
 
-    QString mstr = "cd ~/Work/JTProject/JTModel/; python3 ann.py '" + str + "' " +
+    QString mstr = "cd "+ QCoreApplication::applicationDirPath() + "/../JTModel/; python3 ann.py '" + str + "' " +
                     s1 +
                     s2 +
                     s3 +
@@ -112,27 +119,42 @@ void MainWindow::searchFunction(){
 
 void MainWindow::modeOneSelected()
 {
-    applyMode(12,24,36,48);
+    for(int i = 0; i < 4; i++){
+        resetBounds();
+        applyMode(12,24,36,48);
+    }
 }
 
 void MainWindow::modeTwoSelected()
 {
-    applyMode(4,12,28,60);
+    for(int i = 0; i < 4; i++){
+        resetBounds();
+        applyMode(4,12,28,60);
+    }
 }
 
 void MainWindow::modeThreeSelected()
 {
-    applyMode(32,48,56,60);
+    for(int i = 0; i < 4; i++){
+        resetBounds();
+        applyMode(32,48,56,60);
+    }
 }
 
 void MainWindow::modeFourSelected()
 {
-    applyMode(20,24,28,32);
+    for(int i = 0; i < 4; i++){
+        resetBounds();
+        applyMode(20,24,28,32);
+    }
 }
 
 void MainWindow::modeFiveSelected()
 {
-    applyMode(4,8,24,50);
+    for(int i = 0; i < 4; i++){
+        resetBounds();
+        applyMode(4,8,24,50);
+    }
 }
 
 MainWindow::~MainWindow()

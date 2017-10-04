@@ -24,6 +24,7 @@
 #include <QtWidgets/QSlider>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
+#include "restrictedslider.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -56,10 +57,10 @@ public:
     QDial *d5;
     QLabel *label_2;
     QPushButton *generateButton;
-    QSlider *p1;
-    QSlider *p2;
-    QSlider *p3;
-    QSlider *p4;
+    RestrictedSlider *p1;
+    RestrictedSlider *p2;
+    RestrictedSlider *p3;
+    RestrictedSlider *p4;
     QPushButton *m4;
     QPushButton *m5;
     QPushButton *m1;
@@ -191,30 +192,26 @@ public:
         generateButton = new QPushButton(frame1);
         generateButton->setObjectName(QStringLiteral("generateButton"));
         generateButton->setGeometry(QRect(10, 70, 80, 24));
-        p1 = new QSlider(frame1);
+        p1 = new RestrictedSlider(frame1);
         p1->setObjectName(QStringLiteral("p1"));
         p1->setGeometry(QRect(10, 280, 251, 16));
-        p1->setMaximum(64);
-        p1->setValue(12);
-        p1->setOrientation(Qt::Horizontal);
-        p2 = new QSlider(frame1);
+        p1->setProperty("maximum", QVariant(64));
+        p1->setProperty("value", QVariant(12));
+        p2 = new RestrictedSlider(frame1);
         p2->setObjectName(QStringLiteral("p2"));
         p2->setGeometry(QRect(10, 300, 251, 16));
-        p2->setMaximum(64);
-        p2->setValue(24);
-        p2->setOrientation(Qt::Horizontal);
-        p3 = new QSlider(frame1);
+        p2->setProperty("maximum", QVariant(64));
+        p2->setProperty("value", QVariant(24));
+        p3 = new RestrictedSlider(frame1);
         p3->setObjectName(QStringLiteral("p3"));
         p3->setGeometry(QRect(10, 320, 251, 16));
-        p3->setMaximum(64);
-        p3->setValue(36);
-        p3->setOrientation(Qt::Horizontal);
-        p4 = new QSlider(frame1);
+        p3->setProperty("maximum", QVariant(64));
+        p3->setProperty("value", QVariant(36));
+        p4 = new RestrictedSlider(frame1);
         p4->setObjectName(QStringLiteral("p4"));
         p4->setGeometry(QRect(10, 340, 251, 16));
-        p4->setMaximum(64);
-        p4->setValue(48);
-        p4->setOrientation(Qt::Horizontal);
+        p4->setProperty("maximum", QVariant(64));
+        p4->setProperty("value", QVariant(48));
         m4 = new QPushButton(frame1);
         m4->setObjectName(QStringLiteral("m4"));
         m4->setGeometry(QRect(200, 10, 71, 24));

@@ -51,10 +51,14 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../JTProject/main.cpp \
-		../JTProject/mainwindow.cpp moc_mainwindow.cpp
+		../JTProject/mainwindow.cpp \
+		../JTProject/restrictedslider.cpp moc_mainwindow.cpp \
+		moc_restrictedslider.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
-		moc_mainwindow.o
+		restrictedslider.o \
+		moc_mainwindow.o \
+		moc_restrictedslider.o
 DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/common/unix.conf \
 		/usr/lib/qt/mkspecs/common/linux.conf \
@@ -240,8 +244,10 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/features/exceptions.prf \
 		/usr/lib/qt/mkspecs/features/yacc.prf \
 		/usr/lib/qt/mkspecs/features/lex.prf \
-		../JTProject/JTProject.pro ../JTProject/mainwindow.h ../JTProject/main.cpp \
-		../JTProject/mainwindow.cpp
+		../JTProject/JTProject.pro ../JTProject/mainwindow.h \
+		../JTProject/restrictedslider.h ../JTProject/main.cpp \
+		../JTProject/mainwindow.cpp \
+		../JTProject/restrictedslider.cpp
 QMAKE_TARGET  = JTProject
 DESTDIR       = 
 TARGET        = JTProject
@@ -651,8 +657,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/qt/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../JTProject/mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../JTProject/main.cpp ../JTProject/mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../JTProject/mainwindow.h ../JTProject/restrictedslider.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../JTProject/main.cpp ../JTProject/mainwindow.cpp ../JTProject/restrictedslider.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../JTProject/mainwindow.ui $(DISTDIR)/
 
 
@@ -685,13 +691,18 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/qt/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -Wall -W -dM -E -o moc_predefs.h /usr/lib/qt/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_restrictedslider.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_restrictedslider.cpp
 moc_mainwindow.cpp: ../JTProject/mainwindow.h \
 		moc_predefs.h \
 		/usr/bin/moc
 	/usr/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/root/Work/JTProject/JTProject -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtMultimedia -I/usr/include/qt/QtGui -I/usr/include/qt/QtNetwork -I/usr/include/qt/QtCore -I. -I/usr/include/c++/7.1.1 -I/usr/include/c++/7.1.1/x86_64-pc-linux-gnu -I/usr/include/c++/7.1.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/7.1.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/7.1.1/include-fixed -I/usr/include ../JTProject/mainwindow.h -o moc_mainwindow.cpp
+
+moc_restrictedslider.cpp: ../JTProject/restrictedslider.h \
+		moc_predefs.h \
+		/usr/bin/moc
+	/usr/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/root/Work/JTProject/JTProject -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtMultimedia -I/usr/include/qt/QtGui -I/usr/include/qt/QtNetwork -I/usr/include/qt/QtCore -I. -I/usr/include/c++/7.1.1 -I/usr/include/c++/7.1.1/x86_64-pc-linux-gnu -I/usr/include/c++/7.1.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/7.1.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/7.1.1/include-fixed -I/usr/include ../JTProject/restrictedslider.h -o moc_restrictedslider.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -719,8 +730,14 @@ mainwindow.o: ../JTProject/mainwindow.cpp ../JTProject/mainwindow.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../JTProject/mainwindow.cpp
 
+restrictedslider.o: ../JTProject/restrictedslider.cpp ../JTProject/restrictedslider.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o restrictedslider.o ../JTProject/restrictedslider.cpp
+
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
+
+moc_restrictedslider.o: moc_restrictedslider.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_restrictedslider.o moc_restrictedslider.cpp
 
 ####### Install
 
