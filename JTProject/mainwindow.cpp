@@ -11,10 +11,23 @@ MainWindow::MainWindow(QWidget *parent) :
     QPushButton *generateButton = this->findChild<QPushButton*>("generateButton");
     QPushButton *playOutputButton = this->findChild<QPushButton*>("playOutputButton");
 
+    QPushButton *m1 = this->findChild<QPushButton*>("m1");
+    QPushButton *m2 = this->findChild<QPushButton*>("m2");
+    QPushButton *m3 = this->findChild<QPushButton*>("m3");
+    QPushButton *m4 = this->findChild<QPushButton*>("m4");
+    QPushButton *m5 = this->findChild<QPushButton*>("m5");
+
     QObject::connect(playButton,&QPushButton::clicked,this,&MainWindow::playFunction);
     QObject::connect(searchButton,&QPushButton::clicked,this,&MainWindow::searchFunction);
     QObject::connect(generateButton,&QPushButton::clicked,this,&MainWindow::generateFunction);
     QObject::connect(playOutputButton,&QPushButton::clicked,this,&MainWindow::playOutputFunction);
+
+    QObject::connect(m1,&QPushButton::clicked,this,&MainWindow::modeOneSelected);
+    QObject::connect(m2,&QPushButton::clicked,this,&MainWindow::modeTwoSelected);
+    QObject::connect(m3,&QPushButton::clicked,this,&MainWindow::modeThreeSelected);
+    QObject::connect(m4,&QPushButton::clicked,this,&MainWindow::modeFourSelected);
+    QObject::connect(m5,&QPushButton::clicked,this,&MainWindow::modeFiveSelected);
+
 }
 
 void MainWindow::playFunction(){
@@ -51,43 +64,75 @@ void MainWindow::generateFunction(){
     QSlider *p4 = this->findChild<QSlider*>("p4");
     QSlider *p5 = this->findChild<QSlider*>("p5");
 
-    int p11 = 0;
+    int p1_ = p1->value();
+    int p2_ = p2->value();
+    int p3_ = p3->value();
+    int p4_ = p4->value();
 
-    try{
-        int p11 = p1->value();
+    /*try{
+        //p11 = p1->value();
+
     }catch(std::exception e){
-        //QMessageBox::information(this,tr("ugh"),QString::fromStdString(std::to_string(p11)));
-    }
+        QMessageBox::information(this,tr("ugh"),QString::fromStdString(std::to_string(p11)));
+    }*/
 
-    QMessageBox::information(this,tr("ugh"),QString::fromStdString(std::to_string(p11)));
+    //QMessageBox::information(this,tr("ugh"),QString::fromStdString(std::to_string(p11)));
 
-    //QString s1="",s2="",s3="",s4="",s5="";
-    /*int i = 0;
-    for(i = 0;  i < p1; i++) s1 += QString::fromStdString(std::to_string(((float)d1->value()/100 + 0.1)*5)) + ",";
-    for(i = p1; i < p2; i++) s2 += QString::fromStdString(std::to_string(((float)d2->value()/100 + 0.1)*5)) + ",";
-    for(i = p2; i < p3; i++) s3 += QString::fromStdString(std::to_string(((float)d3->value()/100 + 0.1)*5)) + ",";
-    for(i = p3; i < p4; i++) s4 += QString::fromStdString(std::to_string(((float)d4->value()/100 + 0.1)*5)) + ",";
-    for(i = p4; i < p5; i++) s5 += QString::fromStdString(std::to_string(((float)d5->value()/100 + 0.1)*5)) + ",";
-*/
-    /*QString mstr = "cd ~/Work/JTModel/; python3 ann.py '" + str + "' " +
+    QString s1="",s2="",s3="",s4="",s5="";
+    int i = 0;
+    for(i = 0;  i < p1_; i++) s1 += QString::fromStdString(std::to_string(((float)d1->value()/100 + 0.1)*5)) + ",";
+    for(i = p1_; i < p2_; i++) s2 += QString::fromStdString(std::to_string(((float)d2->value()/100 + 0.1)*5)) + ",";
+    for(i = p2_; i < p3_; i++) s3 += QString::fromStdString(std::to_string(((float)d3->value()/100 + 0.1)*5)) + ",";
+    for(i = p3_; i < p4_; i++) s4 += QString::fromStdString(std::to_string(((float)d4->value()/100 + 0.1)*5)) + ",";
+    for(i = p4_; i < 64; i++) s5 += QString::fromStdString(std::to_string(((float)d5->value()/100 + 0.1)*5)) + ",";
+
+    //Remove the last comma in the number sequence!
+    s5 = QString::fromStdString(s5.toStdString().substr(0, s5.size() - 1));
+
+    QString mstr = "cd ~/Work/JTProject/JTModel/; python3 ann.py '" + str + "' " +
                     s1 +
                     s2 +
                     s3 +
                     s4 +
                     s5 +
             " 'out'";
+    //printf("===============%s",(char *) mstr.toLatin1().data());
     //QMessageBox::information(this,tr("ugh"),QString::fromStdString(std::string(d1->value())));
     executeTerminalCommand((char *) mstr.toLatin1().data());
     std::string otherStr = str.toLatin1().data();
     otherStr = std::regex_replace(otherStr,std::regex("\\.wav"),"_out");
     this->findChild<QLabel*>("outputLabel")->setText(QString::fromStdString(otherStr));
-    */
 }
 
 void MainWindow::searchFunction(){
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"),"/path/to/file/",tr("Wav Files (*.wav)"));
     QLabel *audioLabel = this->findChild<QLabel*>("audioLabel");
     audioLabel->setText(fileName);
+}
+
+void MainWindow::modeOneSelected()
+{
+    applyMode(12,24,36,48);
+}
+
+void MainWindow::modeTwoSelected()
+{
+    applyMode(4,12,28,60);
+}
+
+void MainWindow::modeThreeSelected()
+{
+    applyMode(32,48,56,60);
+}
+
+void MainWindow::modeFourSelected()
+{
+    applyMode(20,24,28,32);
+}
+
+void MainWindow::modeFiveSelected()
+{
+    applyMode(4,8,24,50);
 }
 
 MainWindow::~MainWindow()

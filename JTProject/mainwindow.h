@@ -27,12 +27,24 @@ public slots:
     void playOutputFunction();
     void searchFunction();
     void generateFunction();
+
+    void modeOneSelected();
+    void modeTwoSelected();
+    void modeThreeSelected();
+    void modeFourSelected();
+    void modeFiveSelected();
 private:
     Ui::MainWindow *ui;
     void executeTerminalCommand(char *cmd){
         char data[512];
         fgets(data, sizeof(data) , popen(cmd,"r"));
         //QMessageBox::information(this,tr("Playing"),tr(data));
+    }
+    void applyMode(int arg1,int arg2,int arg3,int arg4){
+        this->findChild<QSlider*>("p1")->setValue(arg1);
+        this->findChild<QSlider*>("p2")->setValue(arg2);
+        this->findChild<QSlider*>("p3")->setValue(arg3);
+        this->findChild<QSlider*>("p4")->setValue(arg4);
     }
 };
 

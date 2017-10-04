@@ -21,7 +21,6 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QRadioButton>
 #include <QtWidgets/QSlider>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
@@ -56,16 +55,16 @@ public:
     QDial *d4;
     QDial *d5;
     QLabel *label_2;
-    QRadioButton *radioButton;
-    QRadioButton *radioButton_2;
-    QRadioButton *radioButton_3;
-    QRadioButton *radioButton_4;
-    QRadioButton *radioButton_5;
     QPushButton *generateButton;
     QSlider *p1;
     QSlider *p2;
     QSlider *p3;
     QSlider *p4;
+    QPushButton *m4;
+    QPushButton *m5;
+    QPushButton *m1;
+    QPushButton *m2;
+    QPushButton *m3;
     QSpacerItem *verticalSpacer_2;
     QSpacerItem *horizontalSpacer_4;
 
@@ -189,49 +188,48 @@ public:
         font.setFamily(QStringLiteral("Sans Serif"));
         font.setPointSize(16);
         label_2->setFont(font);
-        radioButton = new QRadioButton(frame1);
-        radioButton->setObjectName(QStringLiteral("radioButton"));
-        radioButton->setGeometry(QRect(120, 10, 105, 22));
-        radioButton->setChecked(true);
-        radioButton_2 = new QRadioButton(frame1);
-        radioButton_2->setObjectName(QStringLiteral("radioButton_2"));
-        radioButton_2->setGeometry(QRect(120, 30, 105, 22));
-        radioButton_3 = new QRadioButton(frame1);
-        radioButton_3->setObjectName(QStringLiteral("radioButton_3"));
-        radioButton_3->setGeometry(QRect(120, 50, 105, 22));
-        radioButton_4 = new QRadioButton(frame1);
-        radioButton_4->setObjectName(QStringLiteral("radioButton_4"));
-        radioButton_4->setGeometry(QRect(200, 10, 71, 22));
-        radioButton_5 = new QRadioButton(frame1);
-        radioButton_5->setObjectName(QStringLiteral("radioButton_5"));
-        radioButton_5->setGeometry(QRect(200, 30, 71, 22));
         generateButton = new QPushButton(frame1);
         generateButton->setObjectName(QStringLiteral("generateButton"));
-        generateButton->setGeometry(QRect(20, 50, 80, 24));
+        generateButton->setGeometry(QRect(10, 70, 80, 24));
         p1 = new QSlider(frame1);
         p1->setObjectName(QStringLiteral("p1"));
         p1->setGeometry(QRect(10, 280, 251, 16));
         p1->setMaximum(64);
-        p1->setValue(15);
+        p1->setValue(12);
         p1->setOrientation(Qt::Horizontal);
         p2 = new QSlider(frame1);
         p2->setObjectName(QStringLiteral("p2"));
         p2->setGeometry(QRect(10, 300, 251, 16));
         p2->setMaximum(64);
-        p2->setValue(30);
+        p2->setValue(24);
         p2->setOrientation(Qt::Horizontal);
         p3 = new QSlider(frame1);
         p3->setObjectName(QStringLiteral("p3"));
         p3->setGeometry(QRect(10, 320, 251, 16));
         p3->setMaximum(64);
-        p3->setValue(45);
+        p3->setValue(36);
         p3->setOrientation(Qt::Horizontal);
         p4 = new QSlider(frame1);
         p4->setObjectName(QStringLiteral("p4"));
         p4->setGeometry(QRect(10, 340, 251, 16));
         p4->setMaximum(64);
-        p4->setValue(60);
+        p4->setValue(48);
         p4->setOrientation(Qt::Horizontal);
+        m4 = new QPushButton(frame1);
+        m4->setObjectName(QStringLiteral("m4"));
+        m4->setGeometry(QRect(200, 10, 71, 24));
+        m5 = new QPushButton(frame1);
+        m5->setObjectName(QStringLiteral("m5"));
+        m5->setGeometry(QRect(200, 40, 71, 24));
+        m1 = new QPushButton(frame1);
+        m1->setObjectName(QStringLiteral("m1"));
+        m1->setGeometry(QRect(129, 10, 61, 24));
+        m2 = new QPushButton(frame1);
+        m2->setObjectName(QStringLiteral("m2"));
+        m2->setGeometry(QRect(130, 40, 61, 24));
+        m3 = new QPushButton(frame1);
+        m3->setObjectName(QStringLiteral("m3"));
+        m3->setGeometry(QRect(130, 70, 61, 24));
 
         vboxLayout->addWidget(frame1);
 
@@ -266,12 +264,12 @@ public:
         audioLabel->setText(QApplication::translate("MainWindow", "Label", Q_NULLPTR));
         outputLabel->setText(QApplication::translate("MainWindow", "Label", Q_NULLPTR));
         label_2->setText(QApplication::translate("MainWindow", "ANNe", Q_NULLPTR));
-        radioButton->setText(QApplication::translate("MainWindow", "Mode 1", Q_NULLPTR));
-        radioButton_2->setText(QApplication::translate("MainWindow", "Mode 2", Q_NULLPTR));
-        radioButton_3->setText(QApplication::translate("MainWindow", "Mode 3", Q_NULLPTR));
-        radioButton_4->setText(QApplication::translate("MainWindow", "Mode 4", Q_NULLPTR));
-        radioButton_5->setText(QApplication::translate("MainWindow", "Mode 5", Q_NULLPTR));
         generateButton->setText(QApplication::translate("MainWindow", "Generate", Q_NULLPTR));
+        m4->setText(QApplication::translate("MainWindow", "Mode 4", Q_NULLPTR));
+        m5->setText(QApplication::translate("MainWindow", "Mode 5", Q_NULLPTR));
+        m1->setText(QApplication::translate("MainWindow", "Mode 1", Q_NULLPTR));
+        m2->setText(QApplication::translate("MainWindow", "Mode 2", Q_NULLPTR));
+        m3->setText(QApplication::translate("MainWindow", "Mode 3", Q_NULLPTR));
     } // retranslateUi
 
 };

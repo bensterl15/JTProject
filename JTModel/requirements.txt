@@ -1,0 +1,17 @@
+cycler==0.10.0
+enum34==1.1.6
+funcsigs==1.0.2
+functools32==3.2.3.post2
+llvmlite==0.20.0
+matplotlib==2.0.2
+numba==0.35.0
+numpy==1.13.1
+pyparsing==2.2.0
+python-dateutil==2.6.1
+pytz==2017.2
+resampy==0.2.0
+scipy==0.19.1
+singledispatch==3.4.0.3
+six==1.11.0
+subprocess32==3.2.7
+unity-lens-photos==1.0
