@@ -22,6 +22,21 @@ MainWindow::MainWindow(QWidget *parent) :
     QSlider *p3 = this->findChild<QSlider*>("p3");
     QSlider *p4 = this->findChild<QSlider*>("p4");
 
+    p1->setOrientation(Qt::Horizontal);
+    p2->setOrientation(Qt::Horizontal);
+    p3->setOrientation(Qt::Horizontal);
+    p4->setOrientation(Qt::Horizontal);
+
+    p1->setRange(1,64);
+    p2->setRange(1,64);
+    p3->setRange(1,64);
+    p4->setRange(1,64);
+
+    p1->setValue(12);
+    p2->setValue(24);
+    p3->setValue(36);
+    p4->setValue(48);
+
     QObject::connect(playButton,&QPushButton::clicked,this,&MainWindow::playFunction);
     QObject::connect(searchButton,&QPushButton::clicked,this,&MainWindow::searchFunction);
     QObject::connect(generateButton,&QPushButton::clicked,this,&MainWindow::generateFunction);
@@ -40,10 +55,12 @@ MainWindow::MainWindow(QWidget *parent) :
     resetBounds();
 
     //Temporary code to hide the progress bars
+    /*
     p1->setHidden(true);
     p2->setHidden(true);
     p3->setHidden(true);
     p4->setHidden(true);
+    */
 
 }
 

@@ -195,8 +195,6 @@ public:
         p1 = new RestrictedSlider(frame1);
         p1->setObjectName(QStringLiteral("p1"));
         p1->setGeometry(QRect(10, 280, 251, 16));
-        p1->setProperty("maximum", QVariant(64));
-        p1->setProperty("value", QVariant(12));
         p2 = new RestrictedSlider(frame1);
         p2->setObjectName(QStringLiteral("p2"));
         p2->setGeometry(QRect(10, 300, 251, 16));

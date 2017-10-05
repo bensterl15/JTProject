@@ -262,7 +262,7 @@
               <string>Generate</string>
              </property>
             </widget>
-            <widget class="RestrictedSlider" name="p1" native="true">
+            <widget class="RestrictedSlider" name="p1">
              <property name="geometry">
               <rect>
                <x>10</x>
@@ -271,14 +271,8 @@
                <height>16</height>
               </rect>
              </property>
-             <property name="maximum" stdset="0">
-              <number>64</number>
-             </property>
-             <property name="value" stdset="0">
-              <number>12</number>
-             </property>
             </widget>
-            <widget class="RestrictedSlider" name="p2" native="true">
+            <widget class="RestrictedSlider" name="p2">
              <property name="geometry">
               <rect>
                <x>10</x>
@@ -294,7 +288,7 @@
               <number>24</number>
              </property>
             </widget>
-            <widget class="RestrictedSlider" name="p3" native="true">
+            <widget class="RestrictedSlider" name="p3">
              <property name="geometry">
               <rect>
                <x>10</x>
@@ -310,7 +304,7 @@
               <number>36</number>
              </property>
             </widget>
-            <widget class="RestrictedSlider" name="p4" native="true">
+            <widget class="RestrictedSlider" name="p4">
              <property name="geometry">
               <rect>
                <x>10</x>
