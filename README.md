@@ -12,4 +12,8 @@ To build it on your machine: (Note you must install qt5 before proceeding)
 
 -Run: make (this generates an executable JTProject in the build folder)
 
+      -If this complains that C++11 is not installed, edit the Makefile in build directory as follows (then run the make command again afterwards)
+
+      Turn  "CXX              = g++"    to      "CXX                  = g++ --std=c++11"
+
 -Run: ./JTProject (this runs the application)
