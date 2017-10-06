@@ -36,6 +36,7 @@ public slots:
     void modeFiveSelected();
 private:
     Ui::MainWindow *ui;
+    FILE *terminalPointer;
     void executeTerminalCommand(char *cmd){
         char data[512];
         fgets(data, sizeof(data) , popen(cmd,"r"));

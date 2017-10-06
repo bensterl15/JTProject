@@ -61,7 +61,7 @@ MainWindow::MainWindow(QWidget *parent) :
     p3->setHidden(true);
     p4->setHidden(true);
     */
-
+    terminalPointer = popen("cd ../JTModel/; python3 ann.py","w");
 }
 
 void MainWindow::playFunction(){
@@ -113,16 +113,19 @@ void MainWindow::generateFunction(){
     //Remove the last comma in the number sequence!
     s5 = QString::fromStdString(s5.toStdString().substr(0, s5.size() - 1));
 
-    QString mstr = "cd "+ QCoreApplication::applicationDirPath() + "/../JTModel/; python3 ann.py '" + str + "' " +
+    QString mstr = str + " " +
                     s1 +
                     s2 +
                     s3 +
                     s4 +
                     s5 +
-            " 'out'";
+            " out\n";
     //printf("===============%s",(char *) mstr.toLatin1().data());
     //QMessageBox::information(this,tr("ugh"),QString::fromStdString(std::string(d1->value())));
-    executeTerminalCommand((char *) mstr.toLatin1().data());
+    //executeTerminalCommand((char *) mstr.toLatin1().data());
+    fputs((char*) mstr.toLatin1().data(),terminalPointer);
+    fflush(terminalPointer);
+
     std::string otherStr = str.toLatin1().data();
     otherStr = std::regex_replace(otherStr,std::regex("\\.wav"),"_out");
     this->findChild<QLabel*>("outputLabel")->setText(QString::fromStdString(otherStr));
