@@ -120,7 +120,7 @@ void MainWindow::generateFunction(){
                     s4 +
                     s5 +
             " out\n";
-    //printf("===============%s",(char *) mstr.toLatin1().data());
+    printf("===============%s",(char *) mstr.toLatin1().data());
     //QMessageBox::information(this,tr("ugh"),QString::fromStdString(std::string(d1->value())));
     //executeTerminalCommand((char *) mstr.toLatin1().data());
     fputs((char*) mstr.toLatin1().data(),terminalPointer);

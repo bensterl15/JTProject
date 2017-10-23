@@ -52,11 +52,13 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../JTProject/main.cpp \
 		../JTProject/mainwindow.cpp \
-		../JTProject/restrictedslider.cpp moc_mainwindow.cpp \
+		../JTProject/restrictedslider.cpp qrc_background.cpp \
+		moc_mainwindow.cpp \
 		moc_restrictedslider.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		restrictedslider.o \
+		qrc_background.o \
 		moc_mainwindow.o \
 		moc_restrictedslider.o
 DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
@@ -445,6 +447,7 @@ Makefile: ../JTProject/JTProject.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /u
 		/usr/lib/qt/mkspecs/features/yacc.prf \
 		/usr/lib/qt/mkspecs/features/lex.prf \
 		../JTProject/JTProject.pro \
+		../JTProject/background.qrc \
 		/usr/lib/libQt5Widgets.prl \
 		/usr/lib/libQt5Multimedia.prl \
 		/usr/lib/libQt5Gui.prl \
@@ -637,6 +640,7 @@ Makefile: ../JTProject/JTProject.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /u
 /usr/lib/qt/mkspecs/features/yacc.prf:
 /usr/lib/qt/mkspecs/features/lex.prf:
 ../JTProject/JTProject.pro:
+../JTProject/background.qrc:
 /usr/lib/libQt5Widgets.prl:
 /usr/lib/libQt5Multimedia.prl:
 /usr/lib/libQt5Gui.prl:
@@ -656,6 +660,7 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
+	$(COPY_FILE) --parents ../JTProject/background.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/qt/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../JTProject/mainwindow.h ../JTProject/restrictedslider.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../JTProject/main.cpp ../JTProject/mainwindow.cpp ../JTProject/restrictedslider.cpp $(DISTDIR)/
@@ -683,8 +688,14 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all:
+compiler_rcc_make_all: qrc_background.cpp
 compiler_rcc_clean:
+	-$(DEL_FILE) qrc_background.cpp
+qrc_background.cpp: ../JTProject/background.qrc \
+		/usr/bin/rcc \
+		../JTProject/app_background.jpg
+	/usr/bin/rcc -name background ../JTProject/background.qrc -o qrc_background.cpp
+
 compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
@@ -694,7 +705,8 @@ moc_predefs.h: /usr/lib/qt/mkspecs/features/data/dummy.cpp
 compiler_moc_header_make_all: moc_mainwindow.cpp moc_restrictedslider.cpp
 compiler_moc_header_clean:
 	-$(DEL_FILE) moc_mainwindow.cpp moc_restrictedslider.cpp
-moc_mainwindow.cpp: ../JTProject/mainwindow.h \
+moc_mainwindow.cpp: ../JTProject/restrictedslider.h \
+		../JTProject/mainwindow.h \
 		moc_predefs.h \
 		/usr/bin/moc
 	/usr/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/root/Work/JTProject/JTProject -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtMultimedia -I/usr/include/qt/QtGui -I/usr/include/qt/QtNetwork -I/usr/include/qt/QtCore -I. -I/usr/include/c++/7.1.1 -I/usr/include/c++/7.1.1/x86_64-pc-linux-gnu -I/usr/include/c++/7.1.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/7.1.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/7.1.1/include-fixed -I/usr/include ../JTProject/mainwindow.h -o moc_mainwindow.cpp
@@ -710,7 +722,8 @@ compiler_uic_make_all: ui_mainwindow.h
 compiler_uic_clean:
 	-$(DEL_FILE) ui_mainwindow.h
 ui_mainwindow.h: ../JTProject/mainwindow.ui \
-		/usr/bin/uic
+		/usr/bin/uic \
+		../JTProject/restrictedslider.h
 	/usr/bin/uic ../JTProject/mainwindow.ui -o ui_mainwindow.h
 
 compiler_yacc_decl_make_all:
@@ -719,19 +732,24 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
 
-main.o: ../JTProject/main.cpp ../JTProject/mainwindow.h
+main.o: ../JTProject/main.cpp ../JTProject/mainwindow.h \
+		../JTProject/restrictedslider.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../JTProject/main.cpp
 
 mainwindow.o: ../JTProject/mainwindow.cpp ../JTProject/mainwindow.h \
+		../JTProject/restrictedslider.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../JTProject/mainwindow.cpp
 
 restrictedslider.o: ../JTProject/restrictedslider.cpp ../JTProject/restrictedslider.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o restrictedslider.o ../JTProject/restrictedslider.cpp
+
+qrc_background.o: qrc_background.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_background.o qrc_background.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

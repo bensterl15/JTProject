@@ -118,6 +118,9 @@
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
       <layout class="QHBoxLayout">
        <item>
         <spacer name="horizontalSpacer_3">
@@ -145,7 +148,7 @@
          </property>
          <property name="maximumSize">
           <size>
-           <width>300</width>
+           <width>925</width>
            <height>16777215</height>
           </size>
          </property>
@@ -176,57 +179,60 @@
             </property>
             <property name="maximumSize">
              <size>
-              <width>300</width>
-              <height>400</height>
+              <width>925</width>
+              <height>615</height>
              </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-image: url(:/background/app_background.jpg);</string>
             </property>
             <widget class="QDial" name="d1">
              <property name="geometry">
               <rect>
-               <x>20</x>
-               <y>100</y>
-               <width>80</width>
-               <height>80</height>
+               <x>149</x>
+               <y>468</y>
+               <width>90</width>
+               <height>90</height>
               </rect>
              </property>
             </widget>
             <widget class="QDial" name="d2">
              <property name="geometry">
               <rect>
-               <x>100</x>
-               <y>100</y>
-               <width>80</width>
-               <height>80</height>
+               <x>280</x>
+               <y>486</y>
+               <width>90</width>
+               <height>90</height>
               </rect>
              </property>
             </widget>
             <widget class="QDial" name="d3">
              <property name="geometry">
               <rect>
-               <x>180</x>
-               <y>100</y>
-               <width>80</width>
-               <height>80</height>
+               <x>409</x>
+               <y>495</y>
+               <width>90</width>
+               <height>90</height>
               </rect>
              </property>
             </widget>
             <widget class="QDial" name="d4">
              <property name="geometry">
               <rect>
-               <x>60</x>
-               <y>190</y>
-               <width>80</width>
-               <height>80</height>
+               <x>538</x>
+               <y>486</y>
+               <width>90</width>
+               <height>90</height>
               </rect>
              </property>
             </widget>
             <widget class="QDial" name="d5">
              <property name="geometry">
               <rect>
-               <x>150</x>
-               <y>190</y>
-               <width>80</width>
-               <height>80</height>
+               <x>667</x>
+               <y>468</y>
+               <width>90</width>
+               <height>90</height>
               </rect>
              </property>
             </widget>
@@ -262,21 +268,21 @@
               <string>Generate</string>
              </property>
             </widget>
-            <widget class="RestrictedSlider" name="p1">
+            <widget class="RestrictedSlider" name="p1" native="true">
              <property name="geometry">
               <rect>
-               <x>10</x>
-               <y>280</y>
+               <x>320</x>
+               <y>320</y>
                <width>251</width>
                <height>16</height>
               </rect>
              </property>
             </widget>
-            <widget class="RestrictedSlider" name="p2">
+            <widget class="RestrictedSlider" name="p2" native="true">
              <property name="geometry">
               <rect>
-               <x>10</x>
-               <y>300</y>
+               <x>320</x>
+               <y>340</y>
                <width>251</width>
                <height>16</height>
               </rect>
@@ -288,11 +294,11 @@
               <number>24</number>
              </property>
             </widget>
-            <widget class="RestrictedSlider" name="p3">
+            <widget class="RestrictedSlider" name="p3" native="true">
              <property name="geometry">
               <rect>
-               <x>10</x>
-               <y>320</y>
+               <x>320</x>
+               <y>360</y>
                <width>251</width>
                <height>16</height>
               </rect>
@@ -304,11 +310,11 @@
               <number>36</number>
              </property>
             </widget>
-            <widget class="RestrictedSlider" name="p4">
+            <widget class="RestrictedSlider" name="p4" native="true">
              <property name="geometry">
               <rect>
-               <x>10</x>
-               <y>340</y>
+               <x>320</x>
+               <y>380</y>
                <width>251</width>
                <height>16</height>
               </rect>
