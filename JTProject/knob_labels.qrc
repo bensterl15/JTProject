@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/knob_labels">
+        <file>knob_labels.png</file>
+    </qresource>
+</RCC>

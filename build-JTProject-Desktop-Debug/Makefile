@@ -53,12 +53,24 @@ OBJECTS_DIR   = ./
 SOURCES       = ../JTProject/main.cpp \
 		../JTProject/mainwindow.cpp \
 		../JTProject/restrictedslider.cpp qrc_background.cpp \
+		qrc_6button.cpp \
+		qrc_7button.cpp \
+		qrc_littleknob.cpp \
+		qrc_main_label.cpp \
+		qrc_null_selection.cpp \
+		qrc_knob_labels.cpp \
 		moc_mainwindow.cpp \
 		moc_restrictedslider.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		restrictedslider.o \
 		qrc_background.o \
+		qrc_6button.o \
+		qrc_7button.o \
+		qrc_littleknob.o \
+		qrc_main_label.o \
+		qrc_null_selection.o \
+		qrc_knob_labels.o \
 		moc_mainwindow.o \
 		moc_restrictedslider.o
 DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
@@ -448,6 +460,12 @@ Makefile: ../JTProject/JTProject.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /u
 		/usr/lib/qt/mkspecs/features/lex.prf \
 		../JTProject/JTProject.pro \
 		../JTProject/background.qrc \
+		../JTProject/6button.qrc \
+		../JTProject/7button.qrc \
+		../JTProject/littleknob.qrc \
+		../JTProject/main_label.qrc \
+		../JTProject/null_selection.qrc \
+		../JTProject/knob_labels.qrc \
 		/usr/lib/libQt5Widgets.prl \
 		/usr/lib/libQt5Multimedia.prl \
 		/usr/lib/libQt5Gui.prl \
@@ -641,6 +659,12 @@ Makefile: ../JTProject/JTProject.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /u
 /usr/lib/qt/mkspecs/features/lex.prf:
 ../JTProject/JTProject.pro:
 ../JTProject/background.qrc:
+../JTProject/6button.qrc:
+../JTProject/7button.qrc:
+../JTProject/littleknob.qrc:
+../JTProject/main_label.qrc:
+../JTProject/null_selection.qrc:
+../JTProject/knob_labels.qrc:
 /usr/lib/libQt5Widgets.prl:
 /usr/lib/libQt5Multimedia.prl:
 /usr/lib/libQt5Gui.prl:
@@ -660,7 +684,7 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../JTProject/background.qrc $(DISTDIR)/
+	$(COPY_FILE) --parents ../JTProject/background.qrc ../JTProject/6button.qrc ../JTProject/7button.qrc ../JTProject/littleknob.qrc ../JTProject/main_label.qrc ../JTProject/null_selection.qrc ../JTProject/knob_labels.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/qt/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../JTProject/mainwindow.h ../JTProject/restrictedslider.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../JTProject/main.cpp ../JTProject/mainwindow.cpp ../JTProject/restrictedslider.cpp $(DISTDIR)/
@@ -688,13 +712,43 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all: qrc_background.cpp
+compiler_rcc_make_all: qrc_background.cpp qrc_6button.cpp qrc_7button.cpp qrc_littleknob.cpp qrc_main_label.cpp qrc_null_selection.cpp qrc_knob_labels.cpp
 compiler_rcc_clean:
-	-$(DEL_FILE) qrc_background.cpp
+	-$(DEL_FILE) qrc_background.cpp qrc_6button.cpp qrc_7button.cpp qrc_littleknob.cpp qrc_main_label.cpp qrc_null_selection.cpp qrc_knob_labels.cpp
 qrc_background.cpp: ../JTProject/background.qrc \
 		/usr/bin/rcc \
 		../JTProject/app_background.jpg
 	/usr/bin/rcc -name background ../JTProject/background.qrc -o qrc_background.cpp
+
+qrc_6button.cpp: ../JTProject/6button.qrc \
+		/usr/bin/rcc \
+		../JTProject/6button.png
+	/usr/bin/rcc -name 6button ../JTProject/6button.qrc -o qrc_6button.cpp
+
+qrc_7button.cpp: ../JTProject/7button.qrc \
+		/usr/bin/rcc \
+		../JTProject/7button.png
+	/usr/bin/rcc -name 7button ../JTProject/7button.qrc -o qrc_7button.cpp
+
+qrc_littleknob.cpp: ../JTProject/littleknob.qrc \
+		/usr/bin/rcc \
+		../JTProject/littleknob.jpg
+	/usr/bin/rcc -name littleknob ../JTProject/littleknob.qrc -o qrc_littleknob.cpp
+
+qrc_main_label.cpp: ../JTProject/main_label.qrc \
+		/usr/bin/rcc \
+		../JTProject/anne_main_label.png
+	/usr/bin/rcc -name main_label ../JTProject/main_label.qrc -o qrc_main_label.cpp
+
+qrc_null_selection.cpp: ../JTProject/null_selection.qrc \
+		/usr/bin/rcc \
+		../JTProject/null_selection.png
+	/usr/bin/rcc -name null_selection ../JTProject/null_selection.qrc -o qrc_null_selection.cpp
+
+qrc_knob_labels.cpp: ../JTProject/knob_labels.qrc \
+		/usr/bin/rcc \
+		../JTProject/knob_labels.png
+	/usr/bin/rcc -name knob_labels ../JTProject/knob_labels.qrc -o qrc_knob_labels.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
@@ -750,6 +804,24 @@ restrictedslider.o: ../JTProject/restrictedslider.cpp ../JTProject/restrictedsli
 
 qrc_background.o: qrc_background.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_background.o qrc_background.cpp
+
+qrc_6button.o: qrc_6button.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_6button.o qrc_6button.cpp
+
+qrc_7button.o: qrc_7button.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_7button.o qrc_7button.cpp
+
+qrc_littleknob.o: qrc_littleknob.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_littleknob.o qrc_littleknob.cpp
+
+qrc_main_label.o: qrc_main_label.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_main_label.o qrc_main_label.cpp
+
+qrc_null_selection.o: qrc_null_selection.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_null_selection.o qrc_null_selection.cpp
+
+qrc_knob_labels.o: qrc_knob_labels.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_knob_labels.o qrc_knob_labels.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

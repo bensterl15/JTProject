@@ -11,12 +11,6 @@ MainWindow::MainWindow(QWidget *parent) :
     QPushButton *generateButton = this->findChild<QPushButton*>("generateButton");
     QPushButton *playOutputButton = this->findChild<QPushButton*>("playOutputButton");
 
-    QPushButton *m1 = this->findChild<QPushButton*>("m1");
-    QPushButton *m2 = this->findChild<QPushButton*>("m2");
-    QPushButton *m3 = this->findChild<QPushButton*>("m3");
-    QPushButton *m4 = this->findChild<QPushButton*>("m4");
-    QPushButton *m5 = this->findChild<QPushButton*>("m5");
-
     QSlider *p1 = this->findChild<QSlider*>("p1");
     QSlider *p2 = this->findChild<QSlider*>("p2");
     QSlider *p3 = this->findChild<QSlider*>("p3");
@@ -42,17 +36,14 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(generateButton,&QPushButton::clicked,this,&MainWindow::generateFunction);
     QObject::connect(playOutputButton,&QPushButton::clicked,this,&MainWindow::playOutputFunction);
 
-    QObject::connect(m1,&QPushButton::clicked,this,&MainWindow::modeOneSelected);
-    QObject::connect(m2,&QPushButton::clicked,this,&MainWindow::modeTwoSelected);
-    QObject::connect(m3,&QPushButton::clicked,this,&MainWindow::modeThreeSelected);
-    QObject::connect(m4,&QPushButton::clicked,this,&MainWindow::modeFourSelected);
-    QObject::connect(m5,&QPushButton::clicked,this,&MainWindow::modeFiveSelected);
-
     QObject::connect(p1,&QSlider::sliderReleased,this,&MainWindow::resetBounds);
     QObject::connect(p2,&QSlider::sliderReleased,this,&MainWindow::resetBounds);
     QObject::connect(p3,&QSlider::sliderReleased,this,&MainWindow::resetBounds);
     QObject::connect(p4,&QSlider::sliderReleased,this,&MainWindow::resetBounds);
     resetBounds();
+
+    QDial *dMode = this->findChild<QDial*>("dMode");
+    QObject::connect(dMode,&QDial::valueChanged,this,&MainWindow::modeChange);
 
     //Temporary code to hide the progress bars
     /*
@@ -137,43 +128,31 @@ void MainWindow::searchFunction(){
     audioLabel->setText(fileName);
 }
 
-void MainWindow::modeOneSelected()
-{
+void MainWindow::modeChange(){
+    QDial *dMode = this->findChild<QDial*>("dMode");
     for(int i = 0; i < 4; i++){
         resetBounds();
-        applyMode(12,24,36,48);
-    }
-}
+        switch(dMode->value()){
+            case 0:
+                applyMode(12,24,36,48);
+            break;
 
-void MainWindow::modeTwoSelected()
-{
-    for(int i = 0; i < 4; i++){
-        resetBounds();
-        applyMode(4,12,28,60);
-    }
-}
+            case 1:
+                applyMode(4,12,28,60);
+            break;
 
-void MainWindow::modeThreeSelected()
-{
-    for(int i = 0; i < 4; i++){
-        resetBounds();
-        applyMode(32,48,56,60);
-    }
-}
+            case 2:
+                applyMode(32,48,56,60);
+            break;
 
-void MainWindow::modeFourSelected()
-{
-    for(int i = 0; i < 4; i++){
-        resetBounds();
-        applyMode(20,24,28,32);
-    }
-}
+            case 3:
+                applyMode(20,24,28,32);
+            break;
 
-void MainWindow::modeFiveSelected()
-{
-    for(int i = 0; i < 4; i++){
-        resetBounds();
-        applyMode(4,8,24,50);
+            case 4:
+                applyMode(4,8,24,50);
+            break;
+        }
     }
 }
 

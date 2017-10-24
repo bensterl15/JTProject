@@ -37,4 +37,10 @@ FORMS += \
         mainwindow.ui
 
 RESOURCES += \
-    background.qrc
+    background.qrc \
+    6button.qrc \
+    7button.qrc \
+    littleknob.qrc \
+    main_label.qrc \
+    null_selection.qrc \
+    knob_labels.qrc

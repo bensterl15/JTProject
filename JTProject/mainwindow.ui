@@ -28,10 +28,19 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="5">
-        <widget class="QPushButton" name="searchButton">
-         <property name="text">
-          <string>Search</string>
+       <item row="0" column="0">
+        <widget class="QSlider" name="volume">
+         <property name="maximumSize">
+          <size>
+           <width>100</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="value">
+          <number>50</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
          </property>
         </widget>
        </item>
@@ -45,28 +54,19 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="4">
-        <widget class="QLabel" name="audioLabel">
+       <item row="1" column="3">
+        <widget class="QLabel" name="outputLabel">
          <property name="text">
           <string>Label</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="6">
-        <spacer name="horizontalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
+       <item row="0" column="4">
+        <widget class="QPushButton" name="searchButton">
+         <property name="text">
+          <string>Search</string>
          </property>
-         <property name="sizeType">
-          <enum>QSizePolicy::Expanding</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>200</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
+        </widget>
        </item>
        <item row="0" column="3">
         <spacer name="horizontalSpacer">
@@ -84,28 +84,21 @@
          </property>
         </spacer>
        </item>
-       <item row="1" column="3">
-        <widget class="QLabel" name="outputLabel">
-         <property name="text">
-          <string>Label</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QSlider" name="volume">
-         <property name="maximumSize">
-          <size>
-           <width>100</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="value">
-          <number>50</number>
-         </property>
+       <item row="0" column="5">
+        <spacer name="horizontalSpacer_2">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
-        </widget>
+         <property name="sizeType">
+          <enum>QSizePolicy::Expanding</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>200</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>
@@ -236,30 +229,11 @@
               </rect>
              </property>
             </widget>
-            <widget class="QLabel" name="label_2">
-             <property name="geometry">
-              <rect>
-               <x>0</x>
-               <y>0</y>
-               <width>60</width>
-               <height>21</height>
-              </rect>
-             </property>
-             <property name="font">
-              <font>
-               <family>Sans Serif</family>
-               <pointsize>16</pointsize>
-              </font>
-             </property>
-             <property name="text">
-              <string>ANNe</string>
-             </property>
-            </widget>
             <widget class="QPushButton" name="generateButton">
              <property name="geometry">
               <rect>
-               <x>10</x>
-               <y>70</y>
+               <x>320</x>
+               <y>260</y>
                <width>80</width>
                <height>24</height>
               </rect>
@@ -326,71 +300,130 @@
               <number>48</number>
              </property>
             </widget>
-            <widget class="QPushButton" name="m4">
+            <widget class="QPushButton" name="pushButton">
              <property name="geometry">
               <rect>
-               <x>200</x>
-               <y>10</y>
-               <width>71</width>
-               <height>24</height>
+               <x>303</x>
+               <y>150</y>
+               <width>141</width>
+               <height>31</height>
               </rect>
              </property>
+             <property name="styleSheet">
+              <string notr="true">image: url(:/6button/6button.png);</string>
+             </property>
              <property name="text">
-              <string>Mode 4</string>
+              <string/>
              </property>
             </widget>
-            <widget class="QPushButton" name="m5">
+            <widget class="QPushButton" name="pushButton_2">
              <property name="geometry">
               <rect>
-               <x>200</x>
-               <y>40</y>
-               <width>71</width>
-               <height>24</height>
+               <x>466</x>
+               <y>150</y>
+               <width>141</width>
+               <height>31</height>
               </rect>
              </property>
+             <property name="styleSheet">
+              <string notr="true">image: url(:/7button/7button.png);</string>
+             </property>
              <property name="text">
-              <string>Mode 5</string>
+              <string/>
              </property>
             </widget>
-            <widget class="QPushButton" name="m1">
+            <widget class="QDial" name="dMode">
              <property name="geometry">
               <rect>
-               <x>129</x>
-               <y>10</y>
-               <width>61</width>
-               <height>24</height>
+               <x>60</x>
+               <y>80</y>
+               <width>135</width>
+               <height>135</height>
               </rect>
              </property>
-             <property name="text">
-              <string>Mode 1</string>
+             <property name="maximum">
+              <number>4</number>
+             </property>
+             <property name="value">
+              <number>0</number>
+             </property>
+             <property name="sliderPosition">
+              <number>0</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
              </property>
             </widget>
-            <widget class="QPushButton" name="m2">
+            <widget class="QLabel" name="label">
              <property name="geometry">
               <rect>
-               <x>130</x>
-               <y>40</y>
-               <width>61</width>
-               <height>24</height>
+               <x>20</x>
+               <y>190</y>
+               <width>851</width>
+               <height>111</height>
               </rect>
              </property>
+             <property name="styleSheet">
+              <string notr="true">background-image: url(:/main_label/anne_main_label.png);</string>
+             </property>
              <property name="text">
-              <string>Mode 2</string>
+              <string/>
              </property>
             </widget>
-            <widget class="QPushButton" name="m3">
+            <widget class="QLabel" name="audioLabel">
              <property name="geometry">
               <rect>
-               <x>130</x>
-               <y>70</y>
-               <width>61</width>
-               <height>24</height>
+               <x>311</x>
+               <y>83</y>
+               <width>285</width>
+               <height>51</height>
               </rect>
              </property>
+             <property name="autoFillBackground">
+              <bool>false</bool>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-image: url(:/null_selection/null_selection.png);</string>
+             </property>
              <property name="text">
-              <string>Mode 3</string>
+              <string>Label</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
              </property>
             </widget>
+            <widget class="QLabel" name="label_2">
+             <property name="geometry">
+              <rect>
+               <x>170</x>
+               <y>535</y>
+               <width>581</width>
+               <height>61</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-image: url(:/knob_labels/knob_labels.png);</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <zorder>label</zorder>
+            <zorder>d1</zorder>
+            <zorder>d2</zorder>
+            <zorder>d3</zorder>
+            <zorder>d4</zorder>
+            <zorder>d5</zorder>
+            <zorder>generateButton</zorder>
+            <zorder>p1</zorder>
+            <zorder>p2</zorder>
+            <zorder>p3</zorder>
+            <zorder>p4</zorder>
+            <zorder>pushButton</zorder>
+            <zorder>pushButton_2</zorder>
+            <zorder>dMode</zorder>
+            <zorder>audioLabel</zorder>
+            <zorder>label_2</zorder>
            </widget>
           </item>
           <item>

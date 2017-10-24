@@ -36,13 +36,12 @@ public:
     QFrame *upperFrame;
     QGridLayout *_2;
     QPushButton *playOutputButton;
-    QPushButton *searchButton;
-    QPushButton *playButton;
-    QLabel *audioLabel;
-    QSpacerItem *horizontalSpacer_2;
-    QSpacerItem *horizontalSpacer;
-    QLabel *outputLabel;
     QSlider *volume;
+    QPushButton *playButton;
+    QLabel *outputLabel;
+    QPushButton *searchButton;
+    QSpacerItem *horizontalSpacer;
+    QSpacerItem *horizontalSpacer_2;
     QFrame *frame_2;
     QHBoxLayout *hboxLayout;
     QSpacerItem *horizontalSpacer_3;
@@ -55,17 +54,17 @@ public:
     QDial *d3;
     QDial *d4;
     QDial *d5;
-    QLabel *label_2;
     QPushButton *generateButton;
     RestrictedSlider *p1;
     RestrictedSlider *p2;
     RestrictedSlider *p3;
     RestrictedSlider *p4;
-    QPushButton *m4;
-    QPushButton *m5;
-    QPushButton *m1;
-    QPushButton *m2;
-    QPushButton *m3;
+    QPushButton *pushButton;
+    QPushButton *pushButton_2;
+    QDial *dMode;
+    QLabel *label;
+    QLabel *audioLabel;
+    QLabel *label_2;
     QSpacerItem *verticalSpacer_2;
     QSpacerItem *horizontalSpacer_4;
 
@@ -91,35 +90,6 @@ public:
 
         _2->addWidget(playOutputButton, 1, 1, 1, 1);
 
-        searchButton = new QPushButton(upperFrame);
-        searchButton->setObjectName(QStringLiteral("searchButton"));
-
-        _2->addWidget(searchButton, 0, 5, 1, 1);
-
-        playButton = new QPushButton(upperFrame);
-        playButton->setObjectName(QStringLiteral("playButton"));
-        playButton->setAutoDefault(false);
-
-        _2->addWidget(playButton, 0, 1, 1, 1);
-
-        audioLabel = new QLabel(upperFrame);
-        audioLabel->setObjectName(QStringLiteral("audioLabel"));
-
-        _2->addWidget(audioLabel, 0, 4, 1, 1);
-
-        horizontalSpacer_2 = new QSpacerItem(200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        _2->addItem(horizontalSpacer_2, 0, 6, 1, 1);
-
-        horizontalSpacer = new QSpacerItem(70, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        _2->addItem(horizontalSpacer, 0, 3, 1, 1);
-
-        outputLabel = new QLabel(upperFrame);
-        outputLabel->setObjectName(QStringLiteral("outputLabel"));
-
-        _2->addWidget(outputLabel, 1, 3, 1, 1);
-
         volume = new QSlider(upperFrame);
         volume->setObjectName(QStringLiteral("volume"));
         volume->setMaximumSize(QSize(100, 16777215));
@@ -127,6 +97,30 @@ public:
         volume->setOrientation(Qt::Horizontal);
 
         _2->addWidget(volume, 0, 0, 1, 1);
+
+        playButton = new QPushButton(upperFrame);
+        playButton->setObjectName(QStringLiteral("playButton"));
+        playButton->setAutoDefault(false);
+
+        _2->addWidget(playButton, 0, 1, 1, 1);
+
+        outputLabel = new QLabel(upperFrame);
+        outputLabel->setObjectName(QStringLiteral("outputLabel"));
+
+        _2->addWidget(outputLabel, 1, 3, 1, 1);
+
+        searchButton = new QPushButton(upperFrame);
+        searchButton->setObjectName(QStringLiteral("searchButton"));
+
+        _2->addWidget(searchButton, 0, 4, 1, 1);
+
+        horizontalSpacer = new QSpacerItem(70, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        _2->addItem(horizontalSpacer, 0, 3, 1, 1);
+
+        horizontalSpacer_2 = new QSpacerItem(200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        _2->addItem(horizontalSpacer_2, 0, 5, 1, 1);
 
 
         gridLayout->addWidget(upperFrame, 0, 0, 1, 1);
@@ -184,16 +178,9 @@ public:
         d5 = new QDial(frame1);
         d5->setObjectName(QStringLiteral("d5"));
         d5->setGeometry(QRect(667, 468, 90, 90));
-        label_2 = new QLabel(frame1);
-        label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(0, 0, 60, 21));
-        QFont font;
-        font.setFamily(QStringLiteral("Sans Serif"));
-        font.setPointSize(16);
-        label_2->setFont(font);
         generateButton = new QPushButton(frame1);
         generateButton->setObjectName(QStringLiteral("generateButton"));
-        generateButton->setGeometry(QRect(10, 70, 80, 24));
+        generateButton->setGeometry(QRect(320, 260, 80, 24));
         p1 = new RestrictedSlider(frame1);
         p1->setObjectName(QStringLiteral("p1"));
         p1->setGeometry(QRect(320, 320, 251, 16));
@@ -212,21 +199,51 @@ public:
         p4->setGeometry(QRect(320, 380, 251, 16));
         p4->setProperty("maximum", QVariant(64));
         p4->setProperty("value", QVariant(48));
-        m4 = new QPushButton(frame1);
-        m4->setObjectName(QStringLiteral("m4"));
-        m4->setGeometry(QRect(200, 10, 71, 24));
-        m5 = new QPushButton(frame1);
-        m5->setObjectName(QStringLiteral("m5"));
-        m5->setGeometry(QRect(200, 40, 71, 24));
-        m1 = new QPushButton(frame1);
-        m1->setObjectName(QStringLiteral("m1"));
-        m1->setGeometry(QRect(129, 10, 61, 24));
-        m2 = new QPushButton(frame1);
-        m2->setObjectName(QStringLiteral("m2"));
-        m2->setGeometry(QRect(130, 40, 61, 24));
-        m3 = new QPushButton(frame1);
-        m3->setObjectName(QStringLiteral("m3"));
-        m3->setGeometry(QRect(130, 70, 61, 24));
+        pushButton = new QPushButton(frame1);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setGeometry(QRect(303, 150, 141, 31));
+        pushButton->setStyleSheet(QStringLiteral("image: url(:/6button/6button.png);"));
+        pushButton_2 = new QPushButton(frame1);
+        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        pushButton_2->setGeometry(QRect(466, 150, 141, 31));
+        pushButton_2->setStyleSheet(QStringLiteral("image: url(:/7button/7button.png);"));
+        dMode = new QDial(frame1);
+        dMode->setObjectName(QStringLiteral("dMode"));
+        dMode->setGeometry(QRect(60, 80, 135, 135));
+        dMode->setMaximum(4);
+        dMode->setValue(0);
+        dMode->setSliderPosition(0);
+        dMode->setOrientation(Qt::Horizontal);
+        label = new QLabel(frame1);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(20, 190, 851, 111));
+        label->setStyleSheet(QStringLiteral("background-image: url(:/main_label/anne_main_label.png);"));
+        audioLabel = new QLabel(frame1);
+        audioLabel->setObjectName(QStringLiteral("audioLabel"));
+        audioLabel->setGeometry(QRect(311, 83, 285, 51));
+        audioLabel->setAutoFillBackground(false);
+        audioLabel->setStyleSheet(QStringLiteral("background-image: url(:/null_selection/null_selection.png);"));
+        audioLabel->setAlignment(Qt::AlignCenter);
+        label_2 = new QLabel(frame1);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setGeometry(QRect(170, 535, 581, 61));
+        label_2->setStyleSheet(QStringLiteral("background-image: url(:/knob_labels/knob_labels.png);"));
+        label->raise();
+        d1->raise();
+        d2->raise();
+        d3->raise();
+        d4->raise();
+        d5->raise();
+        generateButton->raise();
+        p1->raise();
+        p2->raise();
+        p3->raise();
+        p4->raise();
+        pushButton->raise();
+        pushButton_2->raise();
+        dMode->raise();
+        audioLabel->raise();
+        label_2->raise();
 
         vboxLayout->addWidget(frame1);
 
@@ -256,17 +273,15 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "JT's Cool Project", Q_NULLPTR));
         upperFrame->setStyleSheet(QApplication::translate("MainWindow", "background-color: white;", Q_NULLPTR));
         playOutputButton->setText(QApplication::translate("MainWindow", "Play", Q_NULLPTR));
-        searchButton->setText(QApplication::translate("MainWindow", "Search", Q_NULLPTR));
         playButton->setText(QApplication::translate("MainWindow", "Play", Q_NULLPTR));
-        audioLabel->setText(QApplication::translate("MainWindow", "Label", Q_NULLPTR));
         outputLabel->setText(QApplication::translate("MainWindow", "Label", Q_NULLPTR));
-        label_2->setText(QApplication::translate("MainWindow", "ANNe", Q_NULLPTR));
+        searchButton->setText(QApplication::translate("MainWindow", "Search", Q_NULLPTR));
         generateButton->setText(QApplication::translate("MainWindow", "Generate", Q_NULLPTR));
-        m4->setText(QApplication::translate("MainWindow", "Mode 4", Q_NULLPTR));
-        m5->setText(QApplication::translate("MainWindow", "Mode 5", Q_NULLPTR));
-        m1->setText(QApplication::translate("MainWindow", "Mode 1", Q_NULLPTR));
-        m2->setText(QApplication::translate("MainWindow", "Mode 2", Q_NULLPTR));
-        m3->setText(QApplication::translate("MainWindow", "Mode 3", Q_NULLPTR));
+        pushButton->setText(QString());
+        pushButton_2->setText(QString());
+        label->setText(QString());
+        audioLabel->setText(QApplication::translate("MainWindow", "Label", Q_NULLPTR));
+        label_2->setText(QString());
     } // retranslateUi
 
 };

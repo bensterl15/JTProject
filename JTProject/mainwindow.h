@@ -29,11 +29,7 @@ public slots:
     void searchFunction();
     void generateFunction();
 
-    void modeOneSelected();
-    void modeTwoSelected();
-    void modeThreeSelected();
-    void modeFourSelected();
-    void modeFiveSelected();
+    void modeChange();
 private:
     Ui::MainWindow *ui;
     FILE *terminalPointer;

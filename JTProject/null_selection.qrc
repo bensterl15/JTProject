@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/null_selection">
+        <file>null_selection.png</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/main_label">
+        <file>anne_main_label.png</file>
+    </qresource>
+</RCC>

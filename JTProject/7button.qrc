@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/7button">
+        <file>7button.png</file>
+    </qresource>
+</RCC>
