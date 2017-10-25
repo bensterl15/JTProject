@@ -736,7 +736,7 @@ qrc_7button.cpp: ../JTProject/7button.qrc \
 
 qrc_littleknob.cpp: ../JTProject/littleknob.qrc \
 		/usr/bin/rcc \
-		../JTProject/littleknob.jpg
+		../JTProject/littleknob.png
 	/usr/bin/rcc -name littleknob ../JTProject/littleknob.qrc -o qrc_littleknob.cpp
 
 qrc_main_label.cpp: ../JTProject/main_label.qrc \

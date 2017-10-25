@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/littleknob">
-        <file>littleknob.jpg</file>
+        <file>littleknob.png</file>
     </qresource>
 </RCC>

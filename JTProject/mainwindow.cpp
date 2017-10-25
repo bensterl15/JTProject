@@ -1,7 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include <QPalette>
+#include <QGraphicsScene>
+#include <QGraphicsView>
+#include <QGraphicsPixmapItem>
 
 #define DIAL1DEG -60
 #define DIAL2DEG -30
@@ -18,6 +20,44 @@ MainWindow::MainWindow(QWidget *parent) :
     QPushButton *searchButton = this->findChild<QPushButton*>("searchButton");
     QPushButton *generateButton = this->findChild<QPushButton*>("generateButton");
     QPushButton *playOutputButton = this->findChild<QPushButton*>("playOutputButton");
+
+    ///Handle the small dials here!
+    QDial *d1 = this->findChild<QDial*>("d1");
+    QDial *d2 = this->findChild<QDial*>("d2");
+    QDial *d3 = this->findChild<QDial*>("d3");
+    QDial *d4 = this->findChild<QDial*>("d4");
+    QDial *d5 = this->findChild<QDial*>("d5");
+
+    this->findChild<QLabel *>("d1Label")->setAlignment(Qt::AlignCenter);
+
+    d1->setUpdatesEnabled(false);
+    d2->setUpdatesEnabled(false);
+    d3->setUpdatesEnabled(false);
+    d4->setUpdatesEnabled(false);
+    d5->setUpdatesEnabled(false);
+
+    QObject::connect(d1,&QDial::valueChanged,this,&MainWindow::d1Changed);
+    QObject::connect(d2,&QDial::valueChanged,this,&MainWindow::d2Changed);
+    QObject::connect(d3,&QDial::valueChanged,this,&MainWindow::d3Changed);
+    QObject::connect(d4,&QDial::valueChanged,this,&MainWindow::d4Changed);
+    QObject::connect(d5,&QDial::valueChanged,this,&MainWindow::d5Changed);
+    ///
+
+    ///Handle the big dials here!
+    QDial *dMode = this->findChild<QDial*>("dMode");
+    QObject::connect(dMode,&QDial::valueChanged,this,&MainWindow::modeChange);
+    dMode->setUpdatesEnabled(false);
+
+    QDial *dAuxIn = this->findChild<QDial *>("dAuxIn");
+    QObject::connect(dAuxIn,&QDial::valueChanged,this,&MainWindow::auxChange);
+    dAuxIn->setUpdatesEnabled(false);
+
+    QLabel *dModeLabel = this->findChild<QLabel*>("dModeLabel");
+    dModeLabel->setPixmap(rotatePixmap(":/bigknob/big_knob.png",DIAL1DEG,0));
+
+    QLabel *dAuxInLabel = this->findChild<QLabel*>("dAuxInLabel");
+    dAuxInLabel->setPixmap(rotatePixmap(":/bigknob/big_knob.png",DIAL1DEG,0));
+    ///
 
     QSlider *p1 = this->findChild<QSlider*>("p1");
     QSlider *p2 = this->findChild<QSlider*>("p2");
@@ -50,23 +90,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(p4,&QSlider::sliderReleased,this,&MainWindow::resetBounds);
     resetBounds();
 
-    QDial *dMode = this->findChild<QDial*>("dMode");
-    QObject::connect(dMode,&QDial::valueChanged,this,&MainWindow::modeChange);
-    dMode->setUpdatesEnabled(false);
 
-    QLabel *dModeLabel = this->findChild<QLabel*>("dModeLabel");
-
-    dModeLabel->clear();
-    dModeLabel->setPixmap(rotatePixmap(":/bigknob/big_knob.png",DIAL1DEG));
-    //dModeLabel->setStyleSheet(QString("QLabel { background-image: url(:/null_selection/null_selection.png); } "));
-
-//Temporary code to hide the progress bars
-    /*
-    p1->setHidden(true);
-    p2->setHidden(true);
-    p3->setHidden(true);
-    p4->setHidden(true);
-    */
     terminalPointer = popen("cd ../JTModel/; python3 ann.py","w");
 }
 
@@ -151,32 +175,92 @@ void MainWindow::modeChange(){
         resetBounds();
         switch(dMode->value()){
             case 0:
-                dModeLabel->setPixmap(rotatePixmap(":/bigknob/big_knob.png",DIAL1DEG));
+                dModeLabel->setPixmap(rotatePixmap(":/bigknob/big_knob.png",DIAL1DEG,0));
                 applyMode(12,24,36,48);
             break;
 
             case 1:
-                dModeLabel->setPixmap(rotatePixmap(":/bigknob/big_knob.png",DIAL2DEG));
+                dModeLabel->setPixmap(rotatePixmap(":/bigknob/big_knob.png",DIAL2DEG,0));
                 applyMode(4,12,28,60);
             break;
 
             case 2:
-                dModeLabel->setPixmap(rotatePixmap(":/bigknob/big_knob.png",DIAL3DEG));
+                dModeLabel->setPixmap(rotatePixmap(":/bigknob/big_knob.png",DIAL3DEG,0));
                 applyMode(32,48,56,60);
             break;
 
             case 3:
-                dModeLabel->setPixmap(rotatePixmap(":/bigknob/big_knob.png",DIAL4DEG));
+                dModeLabel->setPixmap(rotatePixmap(":/bigknob/big_knob.png",DIAL4DEG,0));
                 applyMode(20,24,28,32);
             break;
 
             case 4:
-                dModeLabel->setPixmap(rotatePixmap(":/bigknob/big_knob.png",DIAL5DEG));
+                dModeLabel->setPixmap(rotatePixmap(":/bigknob/big_knob.png",DIAL5DEG,0));
                 applyMode(4,8,24,50);
             break;
         }
     }
     dModeLabel->setStyleSheet("background-image: url(:/null_selection/null_selection.png);");
+}
+
+void MainWindow::auxChange(){
+    QLabel *dAuxInLabel = this->findChild<QLabel*>("dAuxInLabel");
+
+    QDial *dAuxIn = this->findChild<QDial*>("dAuxIn");
+    for(int i = 0; i < 4; i++){
+        switch(dAuxIn->value()){
+            case 0:
+                dAuxInLabel->setPixmap(rotatePixmap(":/bigknob/big_knob.png",DIAL1DEG,0));
+            break;
+
+            case 1:
+                dAuxInLabel->setPixmap(rotatePixmap(":/bigknob/big_knob.png",DIAL2DEG,0));
+            break;
+
+            case 2:
+                dAuxInLabel->setPixmap(rotatePixmap(":/bigknob/big_knob.png",DIAL3DEG,0));
+            break;
+
+            case 3:
+                dAuxInLabel->setPixmap(rotatePixmap(":/bigknob/big_knob.png",DIAL4DEG,0));
+            break;
+
+            case 4:
+                dAuxInLabel->setPixmap(rotatePixmap(":/bigknob/big_knob.png",DIAL5DEG,0));
+            break;
+        }
+    }
+    dAuxInLabel->setStyleSheet("background-image: url(:/null_selection/null_selection.png);");
+}
+
+void MainWindow::d1Changed(){
+    QDial *d = this->findChild<QDial *>("d1");
+    QLabel *label = this->findChild<QLabel *>("d1Label");
+    label->setPixmap(rotatePixmap(":/littleknob/littleknob.png",(d->value()*3.6 - 180)/1.1,1));
+}
+
+void MainWindow::d2Changed(){
+    QDial *d = this->findChild<QDial *>("d2");
+    QLabel *label = this->findChild<QLabel *>("d2Label");
+    label->setPixmap(rotatePixmap(":/littleknob/littleknob.png",(d->value()*3.6 - 180)/1.1,1));
+}
+
+void MainWindow::d3Changed(){
+    QDial *d = this->findChild<QDial *>("d3");
+    QLabel *label = this->findChild<QLabel *>("d3Label");
+    label->setPixmap(rotatePixmap(":/littleknob/littleknob.png",(d->value()*3.6 - 180)/1.1,1));
+}
+
+void MainWindow::d4Changed(){
+    QDial *d = this->findChild<QDial *>("d4");
+    QLabel *label = this->findChild<QLabel *>("d4Label");
+    label->setPixmap(rotatePixmap(":/littleknob/littleknob.png",(d->value()*3.6 - 180)/1.1,1));
+}
+
+void MainWindow::d5Changed(){
+    QDial *d = this->findChild<QDial *>("d5");
+    QLabel *label = this->findChild<QLabel *>("d5Label");
+    label->setPixmap(rotatePixmap(":/littleknob/littleknob.png",(d->value()*3.6 - 180)/1.1,1));
 }
 
 MainWindow::~MainWindow()
