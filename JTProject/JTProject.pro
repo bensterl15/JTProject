@@ -43,4 +43,5 @@ RESOURCES += \
     littleknob.qrc \
     main_label.qrc \
     null_selection.qrc \
-    knob_labels.qrc
+    knob_labels.qrc \
+    bigknob.qrc

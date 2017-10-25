@@ -65,6 +65,8 @@ public:
     QLabel *label;
     QLabel *audioLabel;
     QLabel *label_2;
+    QDial *dial;
+    QLabel *dModeLabel;
     QSpacerItem *verticalSpacer_2;
     QSpacerItem *horizontalSpacer_4;
 
@@ -209,7 +211,7 @@ public:
         pushButton_2->setStyleSheet(QStringLiteral("image: url(:/7button/7button.png);"));
         dMode = new QDial(frame1);
         dMode->setObjectName(QStringLiteral("dMode"));
-        dMode->setGeometry(QRect(60, 80, 135, 135));
+        dMode->setGeometry(QRect(126, 286, 135, 135));
         dMode->setMaximum(4);
         dMode->setValue(0);
         dMode->setSliderPosition(0);
@@ -228,6 +230,16 @@ public:
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setGeometry(QRect(170, 535, 581, 61));
         label_2->setStyleSheet(QStringLiteral("background-image: url(:/knob_labels/knob_labels.png);"));
+        dial = new QDial(frame1);
+        dial->setObjectName(QStringLiteral("dial"));
+        dial->setGeometry(QRect(60, 80, 135, 135));
+        dModeLabel = new QLabel(frame1);
+        dModeLabel->setObjectName(QStringLiteral("dModeLabel"));
+        dModeLabel->setGeometry(QRect(129, 298, 121, 121));
+        dModeLabel->setStyleSheet(QStringLiteral("background-image: url(:/null_selection/null_selection.png);"));
+        dModeLabel->setPixmap(QPixmap(QString::fromUtf8(":/bigknob/big_knob.png")));
+        dModeLabel->raise();
+        label_2->raise();
         label->raise();
         d1->raise();
         d2->raise();
@@ -243,7 +255,7 @@ public:
         pushButton_2->raise();
         dMode->raise();
         audioLabel->raise();
-        label_2->raise();
+        dial->raise();
 
         vboxLayout->addWidget(frame1);
 
@@ -282,6 +294,7 @@ public:
         label->setText(QString());
         audioLabel->setText(QApplication::translate("MainWindow", "Label", Q_NULLPTR));
         label_2->setText(QString());
+        dModeLabel->setText(QString());
     } // retranslateUi
 
 };

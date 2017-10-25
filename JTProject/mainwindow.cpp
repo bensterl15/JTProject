@@ -1,6 +1,14 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <QPalette>
+
+#define DIAL1DEG -60
+#define DIAL2DEG -30
+#define DIAL3DEG 0
+#define DIAL4DEG 30
+#define DIAL5DEG 60
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -44,8 +52,15 @@ MainWindow::MainWindow(QWidget *parent) :
 
     QDial *dMode = this->findChild<QDial*>("dMode");
     QObject::connect(dMode,&QDial::valueChanged,this,&MainWindow::modeChange);
+    dMode->setUpdatesEnabled(false);
 
-    //Temporary code to hide the progress bars
+    QLabel *dModeLabel = this->findChild<QLabel*>("dModeLabel");
+
+    dModeLabel->clear();
+    dModeLabel->setPixmap(rotatePixmap(":/bigknob/big_knob.png",DIAL1DEG));
+    //dModeLabel->setStyleSheet(QString("QLabel { background-image: url(:/null_selection/null_selection.png); } "));
+
+//Temporary code to hide the progress bars
     /*
     p1->setHidden(true);
     p2->setHidden(true);
@@ -129,31 +144,39 @@ void MainWindow::searchFunction(){
 }
 
 void MainWindow::modeChange(){
+    QLabel *dModeLabel = this->findChild<QLabel*>("dModeLabel");
+
     QDial *dMode = this->findChild<QDial*>("dMode");
     for(int i = 0; i < 4; i++){
         resetBounds();
         switch(dMode->value()){
             case 0:
+                dModeLabel->setPixmap(rotatePixmap(":/bigknob/big_knob.png",DIAL1DEG));
                 applyMode(12,24,36,48);
             break;
 
             case 1:
+                dModeLabel->setPixmap(rotatePixmap(":/bigknob/big_knob.png",DIAL2DEG));
                 applyMode(4,12,28,60);
             break;
 
             case 2:
+                dModeLabel->setPixmap(rotatePixmap(":/bigknob/big_knob.png",DIAL3DEG));
                 applyMode(32,48,56,60);
             break;
 
             case 3:
+                dModeLabel->setPixmap(rotatePixmap(":/bigknob/big_knob.png",DIAL4DEG));
                 applyMode(20,24,28,32);
             break;
 
             case 4:
+                dModeLabel->setPixmap(rotatePixmap(":/bigknob/big_knob.png",DIAL5DEG));
                 applyMode(4,8,24,50);
             break;
         }
     }
+    dModeLabel->setStyleSheet("background-image: url(:/null_selection/null_selection.png);");
 }
 
 MainWindow::~MainWindow()

@@ -9,6 +9,7 @@
 #include <QSound>
 #include <QDial>
 #include <QSlider>
+#include <QPainter>
 #include "restrictedslider.h"
 #include <regex>
 
@@ -62,6 +63,22 @@ private:
 
         p4->setMinValue(p3->value() + 1);
         p4->setMaxValue(64);
+    }
+    QPixmap rotatePixmap(char* pixPath,float degrees){
+        QPixmap ship(pixPath);
+        QPixmap rotate(ship.size());
+
+        QPainter p(&rotate);
+        p.setRenderHint(QPainter::Antialiasing);
+        p.setRenderHint(QPainter::SmoothPixmapTransform);
+        p.setRenderHint(QPainter::HighQualityAntialiasing);
+        p.translate(rotate.size().width() / 2, rotate.size().height() / 2);
+        p.rotate(degrees);
+        p.translate(-rotate.size().width() / 2, -rotate.size().height() / 2);
+
+        p.drawPixmap(0,0,ship);
+        p.end();
+        return rotate;
     }
 };
 

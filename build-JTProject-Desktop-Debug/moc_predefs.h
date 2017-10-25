@@ -91,7 +91,7 @@
 #define __INT_WIDTH__ 32
 #define __SIZEOF_LONG__ 8
 #define __STDC_IEC_559__ 1
-#define __STDC_ISO_10646__ 201505L
+#define __STDC_ISO_10646__ 201706L
 #define __UINT16_C(c) c
 #define __PTRDIFF_WIDTH__ 64
 #define __DECIMAL_DIG__ 21
