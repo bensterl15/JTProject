@@ -1,14 +1,24 @@
 Note that the contained build folder was compiled on my machine using Arch Linux. 
 
-To build it on your machine: (Note you must install qt5 before proceeding)
+To set-up your computer (Commands are specified in terms of yaourt tool on Arch Linux)
 
--Clone this directory
+yaourt -S qtcreator
+yaourt -S qt51-multimedia
 
--Make a build directory on the same layer as this readme (mkdir build)
+To build it on your machine:
 
--Move into this directory (cd build)
+-Clone this directory:
+      git clone https://github.com/bensterl15/JTProject
 
--Run: qmake ../JTProject/JTProject.pro  (this generates a Makefile in the build directory)
+-Make a build directory on the same layer as this readme:
+      cd JTProject
+      mkdir build
+
+-Move into this directory:
+      cd build
+
+-Run: 
+      qmake ../JTProject/JTProject.pro  (this generates a Makefile in the build directory)
 
 -Run: make (this generates an executable JTProject in the build folder)
 
@@ -16,4 +26,5 @@ To build it on your machine: (Note you must install qt5 before proceeding)
 
       Turn  "CXX              = g++"    to      "CXX                  = g++ --std=c++11"
 
--Run: ./JTProject (this runs the application)
+-Run:
+      ./JTProject (this runs the application)
