@@ -3,7 +3,7 @@ Note that the contained build folder was compiled on my machine using Arch Linux
 To set-up your computer (Commands are specified in terms of yaourt tool on Arch Linux)
 
       yaourt -S qtcreator
-      yaourt -S qt51-multimedia
+      yaourt -S qt5
 
 To build it on your machine:
 
