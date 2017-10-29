@@ -8,16 +8,20 @@ To set-up your computer (Commands are specified in terms of yaourt tool on Arch 
 To build it on your machine:
 
 -Clone this directory:
+
       git clone https://github.com/bensterl15/JTProject
 
 -Make a build directory on the same layer as this readme:
+      
       cd JTProject
       mkdir build
 
 -Move into this directory:
+      
       cd build
 
 -Run: 
+      
       qmake ../JTProject/JTProject.pro  (this generates a Makefile in the build directory)
 
 -Run: make (this generates an executable JTProject in the build folder)
@@ -27,4 +31,5 @@ To build it on your machine:
       Turn  "CXX              = g++"    to      "CXX                  = g++ --std=c++11"
 
 -Run:
+      
       ./JTProject (this runs the application)
